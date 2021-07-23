@@ -1,8 +1,12 @@
 module todo.rest {
 
     requires todo.domain;
+
     requires spring.web;
+
     requires java.validation;
+
+    requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.annotation;
 
     exports net.mguenther.todo.rest;

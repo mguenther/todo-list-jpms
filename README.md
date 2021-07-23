@@ -45,6 +45,8 @@ Caused by: java.lang.NoSuchMethodException: net.mguenther.todo.persistence.jpa.T
 	... 21 more
 ```
 
+This can be mitigated by adding a `requires`-relationship to module `jdk.unsupported`, which brings in internal `com.sun.*` packages that Objenesis relies on (cf. `com.sun.reflect`).
+
 ### Wiring beans explicitly vs. wiring beans dynamically
 
 If you want to wire your beans explicitly in the infrastructure layer, then you have to open up all packages in dependent modules that contain implementation details. Suppose you have the following configuration class as part of your infrastructure layer:
@@ -87,3 +89,7 @@ module todo.domain {
   opens net.mguenther.todo.domain.impl to spring.core, spring.beans, spring.context;
 }
 ```
+
+### Move Spring component configuration into module
+
+Create a `*.config` package and put everything related to the Spring component configuration in there. Be sure that you use conditionals (cf. `@ConditionalOnMissingBean` for instance) on all beans that you create as part of that `@Configuration`. Or use a module solely for configuring things and establish a `requires`-dependency between the module that contains the Spring component and its configuration (in case other modules need to use this configuration as well).
