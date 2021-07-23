@@ -11,14 +11,12 @@
         <version>0.1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>todo-list-jpms-domain</artifactId>
+    <artifactId>todo-list-jpms-application</artifactId>
     <version>0.1.0-SNAPSHOT</version>
-    <name>[Todo List JPMS] - Domain Layer</name>
+    <packaging>pom</packaging>
+    <name>[Todo List JPMS] Application Layer</name>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-        </dependency>
-    </dependencies>
+    <modules>
+        <module>todo-list-jpms-rest</module>
+    </modules>
 </project>
