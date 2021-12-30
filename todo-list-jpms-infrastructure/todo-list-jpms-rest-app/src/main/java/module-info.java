@@ -7,6 +7,9 @@ module todo.rest.app {
     requires spring.boot;
     requires spring.boot.autoconfigure;
 
+    requires spring.core;
+    requires spring.context;
+
     // otherwise the embedded Tomcat server will not be started and the
     // application terminates itself after creating the persistence unit
     requires org.apache.tomcat.embed.core;
